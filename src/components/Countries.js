@@ -1,4 +1,4 @@
-const Countries = ({ countries }) => {
+const Countries = ({ countries, showOne }) => {
   if (countries.length > 10) {
     return <p>Too many matches, specify another filter</p>
   } else if (countries.length === 1) {
@@ -7,7 +7,6 @@ const Countries = ({ countries }) => {
     for (const language in country.languages) {
       languages.push(country.languages[language])
     }
-    console.log(country);
     return (
       <div>
         <h1>{country.name.common}</h1>
@@ -23,7 +22,14 @@ const Countries = ({ countries }) => {
   } else {
     return (
       <div>
-        {countries.map(country => <p key={country.name.common}>{country.name.common}</p>)}
+        {countries.map(country => {
+          return (
+            <>
+              <p key={country.name.common}>{country.name.common}</p>
+              <button onClick={() => showOne(country.name.common)}>show</button>
+            </>
+          )
+        })}
       </div>
     )
   }

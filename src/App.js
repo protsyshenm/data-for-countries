@@ -26,10 +26,14 @@ function App() {
     setFilter(event.target.value)
   }
 
+  const showOneCountry = countryName => {
+    setFilter(countryName)
+  }
+
   return (
     <div>
       find countries <input value={filter} onChange={handleFilterChange}/>
-      <Countries countries={filteredCountries} />
+      <Countries countries={filteredCountries} showOne={showOneCountry} />
     </div>
   )
 }
